@@ -90,7 +90,10 @@ public class cctvBehavior : MonoBehaviour
         timerText.text = Mathf.FloorToInt(elapsedTime).ToString();
         if (elapsedTime >=3) //Game restarts after 3 seconds
         {
+            elapsedTime = 0;
+            timerText.text = Mathf.FloorToInt(elapsedTime).ToString();
             restartGame();
+
         }
     }
 
