@@ -196,15 +196,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1cc01168159cbaa4bb0b2963c8e36da0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8
+      value: -23
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1cc01168159cbaa4bb0b2963c8e36da0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1cc01168159cbaa4bb0b2963c8e36da0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.1
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1cc01168159cbaa4bb0b2963c8e36da0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraHead: {fileID: 8401230372019800147}
   player: {fileID: 4979309906041838400, guid: 5a378ebefab041f4daf72c4f00f10ffb, type: 3}
-  timerText: {fileID: 3249710411636849836, guid: 29ff89d0abd3e5b47a9e37c6db081798, type: 3}
+  timerText: {fileID: 8820556819747436217, guid: 29ff89d0abd3e5b47a9e37c6db081798, type: 3}
   speed: 30
   range: 60
 --- !u!54 &6991996767288086588

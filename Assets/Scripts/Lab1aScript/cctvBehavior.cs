@@ -26,14 +26,14 @@ public class cctvBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        defaultXRotation = cameraHead.transform.rotation.eulerAngles.x;
-        defaultZRotation = cameraHead.transform.rotation.eulerAngles.z;
+        defaultXRotation = cameraHead.transform.rotation.eulerAngles.x; //Get the initial X rotation of the camera head
+        defaultZRotation = cameraHead.transform.rotation.eulerAngles.z;//Get the initial Z rotation of the camera head
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isPlayerInside)
+        if (!isPlayerInside) //Keep rotating if player is not detected
         {
             cctvRotate();
         }
@@ -41,7 +41,7 @@ public class cctvBehavior : MonoBehaviour
         {
             if (playerTransform != null)
             {
-                playerInside();
+                playerInside(); //Lock on player when collider is triggered
             }
         }
     }
@@ -51,8 +51,8 @@ public class cctvBehavior : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             isPlayerInside = true;
-            playerTransform = other.transform;
-            timerCount();
+            playerTransform = other.transform; //Get the player's transform location
+            timerCount(); //Start the timer
         }
     }
     private void OnTriggerExit(Collider other)
@@ -60,35 +60,35 @@ public class cctvBehavior : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             isPlayerInside = false;
-            playerTransform = null;
-            timerCount();
+            playerTransform = null; //Remove the player's transform when player exits
+            timerCount(); //Stop the timer
         }
     }
 
     private void cctvRotate()
     {
-        float angle = Mathf.PingPong(Time.time * speed, range * 2) - range;
+        float angle = Mathf.PingPong(Time.time * speed, range * 2) - range; //The camera constantly moves between -60 and 60 degrees
         cameraHead.transform.rotation = Quaternion.Euler(defaultXRotation, angle - 180, defaultZRotation);
 
     }
 
     private void playerInside()
     {
-        cameraHead.transform.LookAt(playerTransform.position);
+        cameraHead.transform.LookAt(playerTransform.position); //Camera follows player when detected
     }
 
     private void timerCount()
     {
         if (isPlayerInside == true)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.deltaTime; //Start timer when player is detected
         }
         else
         {
-            elapsedTime = 0;
+            elapsedTime = 0; //Reset when player is not
         }
         timerText.text = Mathf.FloorToInt(elapsedTime).ToString();
-        if (elapsedTime >=3)
+        if (elapsedTime >=3) //Game restarts after 3 seconds
         {
             restartGame();
         }

@@ -8,6 +8,7 @@ TagManager:
   - MainLight
   - AlarmLight
   - Siren
+  - cctvCam
   layers:
   - Default
   - TransparentFX
