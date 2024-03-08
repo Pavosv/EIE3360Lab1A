@@ -23,5 +23,14 @@ public class LaserPlayerDetection : MonoBehaviour
             if (other.gameObject == player)
                 // ... set the last global sighting of the player to the colliding object's position.
                 lastPlayerSighting.position = other.transform.position;
+        lastPlayerSighting.timerStart = false; //Timer doesn't start until player leaves
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (GetComponent<Renderer>().enabled)
+            // ... and if the colliding gameobject is the player...
+            if (other.gameObject == player)
+        lastPlayerSighting.timerStart = true; //When player exits detection zone, start timer
     }
 }

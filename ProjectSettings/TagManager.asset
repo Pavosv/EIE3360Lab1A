@@ -9,6 +9,7 @@ TagManager:
   - AlarmLight
   - Siren
   - cctvCam
+  - Fader
   layers:
   - Default
   - TransparentFX

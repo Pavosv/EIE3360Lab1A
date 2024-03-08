@@ -28,6 +28,16 @@ public class CCTVPlayerDetection : MonoBehaviour
                 if (hit.collider.gameObject == player)
                     // ... set the last global sighting of the player to the player's position.
                     lastPlayerSighting.position = player.transform.position;
+            lastPlayerSighting.timerStart = false; //timer doesn't start until player leaves
+            Debug.Log("Player enters, timer Start: " + lastPlayerSighting.timerStart);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)
+        {
+                    lastPlayerSighting.timerStart = true; //When player exits detection zone, start timer
+                    Debug.Log("Player leaves, timer Start: " + lastPlayerSighting.timerStart);
         }
     }
 }

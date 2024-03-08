@@ -7,16 +7,26 @@ public class NewBehaviourScript : MonoBehaviour
     public float speed = 6f; // Player speed
     Vector3 movement;
     Rigidbody playerRigidbody;
+
+    protected Joystick joystick;
+    protected JoybuttonControls joybutton;
+
     void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        joystick = FindObjectOfType<Joystick>();
+        joybutton = FindObjectOfType<JoybuttonControls>();
     }
     void FixedUpdate()
     {
-        float hor = Input.GetAxisRaw("Horizontal");
-        float ver = Input.GetAxisRaw("Vertical");
-        movement.Set(hor, 0f, ver);
-        movement = movement.normalized * speed * Time.deltaTime; //Gets the direction and multiplies by speed
-        playerRigidbody.MovePosition(transform.position + movement); //Add the initial position to the movement
+        playerRigidbody.velocity = new Vector3(
+            joystick.Horizontal * speed + Input.GetAxis("Horizontal") * speed, 
+            playerRigidbody.velocity.y, 
+            joystick.Vertical * speed + Input.GetAxis("Vertical") * speed);
+
+        if (joystick.Horizontal * speed > 0)
+        {
+            Debug.Log("Moving");
+        }
     }
 }

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 215829c2ab5d3fd418e08872f6a1537b, type: 3}
       propertyPath: m_Name
-      value: fx_laserFence_lasers_001
+      value: fx_laserFence_lasers_001_Lab1a
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 215829c2ab5d3fd418e08872f6a1537b, type: 3}
       propertyPath: m_LocalScale.z
@@ -114,7 +114,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c83d290580d9743409e4185fd2e1c647, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0

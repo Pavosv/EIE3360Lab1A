@@ -79,6 +79,7 @@ public class cctvBehavior : MonoBehaviour
 
     private void timerCount()
     {
+
         if (isPlayerInside == true)
         {
             elapsedTime += Time.deltaTime; //Start timer when player is detected

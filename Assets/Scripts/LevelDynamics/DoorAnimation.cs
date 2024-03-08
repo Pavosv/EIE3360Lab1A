@@ -18,6 +18,10 @@ public class DoorAnimation : MonoBehaviour
         // Setting up the references.
         anim = GetComponent<Animator>();
         hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
+        if (hash == null)
+        {
+            Debug.LogError("HashIDs component not found on the GameController!");
+        }
         player = GameObject.FindGameObjectWithTag(Tags.player);
         playerInventory = player.GetComponent<PlayerInventory>();
     }

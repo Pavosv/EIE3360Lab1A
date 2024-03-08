@@ -9,12 +9,13 @@ public class LaserSwitchDeactivation : MonoBehaviour
 
     
     private GameObject player;              // Reference to the player.
+    protected JoybuttonControls joybutton;
 
-    
     void Awake()
     {
         // Setting up the reference.
         player = GameObject.FindGameObjectWithTag(Tags.player);
+        joybutton = FindObjectOfType<JoybuttonControls>();
     }
 
 
@@ -23,7 +24,7 @@ public class LaserSwitchDeactivation : MonoBehaviour
         // If the colliding gameobject is the player...
         if (other.gameObject == player)
             // ... and the switch button is pressed...
-            if (Input.GetButton("Switch"))
+            if (Input.GetButton("Switch") || joybutton.Pressed)
                 // ... deactivate the laser.
                 LaserDeactivation();
     }
