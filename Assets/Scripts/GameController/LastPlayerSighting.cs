@@ -7,7 +7,7 @@ public class LastPlayerSighting : MonoBehaviour
     public Vector3 position = new Vector3(1000f, 1000f, 1000f);// The last global sighting of the player.
     public Vector3 resetPosition = new Vector3(1000f, 1000f, 1000f);
     // The default position if the player is not in sight.
-    public bool timerStart = false;
+    public bool timerStart;
 
     public float lightHighIntensity = 0.25f;// The directional light's intensity when the alarms are off.
     public float lightLowIntensity = 0f;     // The directional light's intensity when the alarms are on.
@@ -15,7 +15,7 @@ public class LastPlayerSighting : MonoBehaviour
     public float musicFadeSpeed = 1f;
     public float detectionTimer =5f; //When the light and alarm fades after losing sight of player
 
-    private float timer;
+    private float timer = 0f;
     private AlarmLight alarm; 			// Reference to the AlarmLight script.
     private Light mainLight; 				// Reference to the main light.
     private AudioSource panicAudio; 			// Reference to the AudioSource of the panic msuic.
@@ -51,23 +51,23 @@ public class LastPlayerSighting : MonoBehaviour
         // Switch the alarms and fade the music.
         SwitchAlarms();
         MusicFading();
-        toggleAlert();
+        ToggleAlert();
     }
 
-    void toggleAlert()
+    void ToggleAlert()
     {
         if (timerStart) //If timerStart is true, start the timer to erase alarm
         {
             Debug.Log("Timer start: " + timer);
             timer += Time.deltaTime; //Timer counts up to detectionTimer
             timer = Mathf.Clamp(timer, 0, detectionTimer);
-        }
-        if (timer >= detectionTimer) //If reach detectionTimer, reset position and timer
-        {
-            Debug.Log("Timer reset");
-            position = resetPosition;
-            timerStart = false;
-            timer = 0;
+            if (timer >= detectionTimer) //If reach detectionTimer, reset position and timer
+            {
+                Debug.Log("Timer reset");
+                position = resetPosition;
+                timerStart = false;
+                timer = 0;
+            }
         }
     }
     void SwitchAlarms()

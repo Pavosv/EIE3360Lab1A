@@ -26,10 +26,12 @@ public class CCTVPlayerDetection : MonoBehaviour
             if (Physics.Raycast(transform.position, relPlayerPos, out hit))
                 // If the raycast hits the player...
                 if (hit.collider.gameObject == player)
-                    // ... set the last global sighting of the player to the player's position.
+                // ... set the last global sighting of the player to the player's position.
+                {
                     lastPlayerSighting.position = player.transform.position;
-            lastPlayerSighting.timerStart = false; //timer doesn't start until player leaves
-            Debug.Log("Player enters, timer Start: " + lastPlayerSighting.timerStart);
+                    lastPlayerSighting.timerStart = false; //timer doesn't start until player leaves
+                    Debug.Log("Player enters, timer Start: " + lastPlayerSighting.timerStart);
+                }
         }
     }
     private void OnTriggerExit(Collider other)

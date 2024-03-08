@@ -12,11 +12,19 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;              // Reference to the animator component.
     private HashIDs hash;               // Reference to the HashIDs.
 
+    protected Joystick joystick;
+    protected JoybuttonControls joybutton;
+    Rigidbody playerRigidbody;
+
     void Awake()
     {
         // Setting up the references.
         anim = GetComponent<Animator>();
         hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
+        playerRigidbody = GetComponent<Rigidbody>();
+        joystick = FindObjectOfType<Joystick>();
+        joybutton = FindObjectOfType<JoybuttonControls>();
+  
 
         // Set the weight of the shouting layer to 1.
         anim.SetLayerWeight(1, 1f);
@@ -25,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Cache the inputs.
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal") + joystick.Horizontal;
+        float v = Input.GetAxis("Vertical") + joystick.Vertical;
         bool sneak = Input.GetButton("Sneak");
 
         MovementManagement(h, v, sneak);
